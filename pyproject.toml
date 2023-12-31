@@ -1,6 +1,16 @@
 [project]
-name = "uwuifier"
-version = "0.2.0"
+name = "imsosorrybutinc"
+version = "0.3.0"
+description = "Sometimes it can be necessary to call upon the ancient arts... but in C!"
+authors = [
+    { name = "Bradley Reynolds", email = "bradley.reynolds@darbia.dev" },
+]
+license = { text = "MIT" }
+readme = "README.md"
+
+[project.urls]
+repository = "https://github.com/letsbuilda/imsosorrybutinc/"
+documentation = "https://docs.letsbuilda.dev/imsosorrybutinc/"
 
 [build-system]
 requires = ["setuptools"]
