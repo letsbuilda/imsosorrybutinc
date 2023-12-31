@@ -15,3 +15,6 @@ documentation = "https://docs.letsbuilda.dev/imsosorrybutinc/"
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.cibuildwheel]
+build = ["cp310-*", "cp311-*", "cp312-*"]
