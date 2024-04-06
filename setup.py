@@ -1,7 +1,5 @@
-"""
-Set up the package
-TODO: switch to pyproject.toml
-"""
+"""Dynamic configuration for Setuptools."""
+
 from setuptools import Extension, setup
 
 setup(
@@ -11,5 +9,5 @@ setup(
             include_dirs=["src"],
             sources=["src/uwuifier.c"],
         ),
-    ]
+    ],
 )
