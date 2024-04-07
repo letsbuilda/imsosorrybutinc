@@ -7,7 +7,7 @@ authors = [
 ]
 license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10,<3.14"
 dependencies = [
 
 ]
@@ -41,11 +41,13 @@ build-backend = "setuptools.build_meta"
 [tool.ruff]
 preview = true
 unsafe-fixes = true
-target-version = "py38"
+target-version = "py310"
 line-length = 120
 
 [tool.ruff.lint]
-select = ["ALL"]
+select = [
+    "ALL",
+]
 ignore = [
     "CPY001", # (Missing copyright notice at top of file)
     "S311", # (Standard pseudo-random generators are not suitable for cryptographic purposes) - Really?
