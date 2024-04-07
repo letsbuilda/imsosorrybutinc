@@ -1872,7 +1872,7 @@ static struct PyModuleDef uwuifiermodule = {
 };
 
 PyMODINIT_FUNC
-PyInit_uwuifier(void)
+PyInit__uwuifier(void)
 {
     srand((unsigned)time(NULL));
     return PyModule_Create(&uwuifiermodule);
