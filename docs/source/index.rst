@@ -24,4 +24,3 @@ Extras
 * :ref:`genindex`
 * :ref:`search`
 * :doc:`changelog`
-* :doc:`history`
