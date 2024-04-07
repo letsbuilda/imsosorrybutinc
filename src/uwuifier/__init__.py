@@ -1,3 +1,5 @@
+""":3"""
+
 from ._uwuifier import (
     char_replace,
     emoji,
