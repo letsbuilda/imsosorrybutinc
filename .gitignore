@@ -1,4 +1,13 @@
-# Python generated files
+# JetBrains
+.idea
+
+# Packaging
+*.egg-info
 build
 dist
-*.egg-info
+
+# Cache
+__pycache__
+
+# Docs
+docs/build
