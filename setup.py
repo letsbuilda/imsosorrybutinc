@@ -7,7 +7,7 @@ setup(
         Extension(
             name="uwuifier",
             include_dirs=["src"],
-            sources=["src/uwuifier.c"],
+            sources=["src/uwuifier/_uwuifier.c"],
         ),
     ],
 )
