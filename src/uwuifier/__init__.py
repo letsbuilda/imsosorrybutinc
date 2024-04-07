@@ -1,4 +1,4 @@
-""":3"""
+""":3."""
 
 from ._uwuifier import (
     char_replace,
@@ -11,11 +11,11 @@ from ._uwuifier import (
 )
 
 __all__ = [
-    "word_replace",
-    "nyaify",
     "char_replace",
-    "stutter",
     "emoji",
+    "nyaify",
+    "stutter",
     "tildify",
     "uwuify",
+    "word_replace",
 ]
