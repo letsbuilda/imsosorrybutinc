@@ -166,7 +166,7 @@ rand_double(void)
 #define STRINGLIB_CHAR          Py_UCS4
 #if SIZEOF_WCHAR_T == 4
 #define STRINGLIB_FAST_MEMCHR(s, c, n)              \
-    (Py_UCS2 *)wmemchr((const wchar_t *)(s), c, n)
+    (Py_UCS4 *)wmemchr((const wchar_t *)(s), c, n)
 #endif
 #include "uwuifier.stringlib.h"
 #undef STRINGLIB
@@ -387,8 +387,10 @@ ascii_askind(void const *data, Py_ssize_t len, int kind)
     switch (kind) {
     case PyUnicode_2BYTE_KIND:
         result = PyMem_New(Py_UCS2, len);
-        if (UNLIKELY(!result))
-            return PyErr_NoMemory();
+        if (UNLIKELY(!result)) {
+            PyErr_NoMemory();
+            return NULL;
+        }
         CONVERT_BYTES(
             Py_UCS1, Py_UCS2,
             (const Py_UCS1 *)data,
@@ -397,8 +399,10 @@ ascii_askind(void const *data, Py_ssize_t len, int kind)
         return result;
     case PyUnicode_4BYTE_KIND:
         result = PyMem_New(Py_UCS4, len);
-        if (UNLIKELY(!result))
-            return PyErr_NoMemory();
+        if (UNLIKELY(!result)) {
+            PyErr_NoMemory();
+            return NULL;
+        }
         CONVERT_BYTES(
             Py_UCS1, Py_UCS4,
             (const Py_UCS1 *)data,
@@ -744,6 +748,7 @@ nyaify_impl(PyObject *text)
     }
     if (count != n) {
         if (UNLIKELY(PyUnicode_Resize(&u, ol + count) < 0)) {
+            Py_DECREF(u);
             return NULL;
         }
     }
@@ -960,6 +965,7 @@ stutter_impl(PyObject *text, float *strength_p)
     }
     if (count != n) {
         if (UNLIKELY(PyUnicode_Resize(&u, ol + count+count) < 0)) {
+            Py_DECREF(u);
             return NULL;
         }
     }
@@ -1210,6 +1216,7 @@ emoji_impl(PyObject *text, float *strength_p)
             u = u2;
         }
         else if (UNLIKELY(PyUnicode_Resize(&u, new_size) < 0)) {
+            Py_DECREF(u);
             return NULL;
         }
     }
@@ -1404,6 +1411,7 @@ tildify_impl(PyObject *text, float *strength_p)
     }
     if (count != n) {
         if (UNLIKELY(PyUnicode_Resize(&u, ol + count) < 0)) {
+            Py_DECREF(u);
             return NULL;
         }
     }
@@ -1530,11 +1538,11 @@ LOCAL(int)
 long_sign(PyObject *l)
 {
     PyObject *zero = PyLong_FromLong(0L);
-    if (UNLIKELY(zero == NULL)) {
-        return -1;
-    }
+    if (UNLIKELY(zero == NULL)) return -1;
+
     int res = PyObject_RichCompareBool(l, zero, Py_GT);
     Py_DECREF(zero);
+
     return res;
 }
 
@@ -1614,9 +1622,7 @@ uwuify(PyObject *module,
     if (has_SS) {
         if (PyLong_CheckExact(SS_o)) {
             int sign = long_sign(SS_o);
-            if (sign == -1) {
-                 return NULL;
-            }
+            if (sign == -1) return NULL;
             SS = sign > 0 ? 1. : 0.;
         }
         else if (PyFloat_CheckExact(SS_o)) {
@@ -1633,9 +1639,7 @@ uwuify(PyObject *module,
     if (has_ES) {
         if (PyLong_CheckExact(ES_o)) {
             int sign = long_sign(ES_o);
-            if (sign == -1) {
-                 return NULL;
-            }
+            if (sign == -1) return NULL;
             ES = sign > 0 ? 1. : 0.;
         }
         else if (PyFloat_CheckExact(ES_o)) {
@@ -1652,9 +1656,7 @@ uwuify(PyObject *module,
     if (has_TS) {
         if (PyLong_CheckExact(TS_o)) {
             int sign = long_sign(TS_o);
-            if (sign == -1) {
-                 return NULL;
-            }
+            if (sign == -1) return NULL;
             TS = sign > 0 ? 1. : 0.;
         }
         else if (PyFloat_CheckExact(TS_o)) {
@@ -1685,7 +1687,7 @@ skip_keyarg_checks:
     if (text != tmp) { \
         nochange = 0; \
         Py_SETREF(text, tmp); \
-    }
+    } \
 
     uwuifier_modstate *state = PyModule_GetState(module);
     assert(state != NULL);
