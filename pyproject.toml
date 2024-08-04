@@ -72,5 +72,5 @@ source = [
 ]
 
 [tool.cibuildwheel]
-build = ["cp310-*", "cp311-*", "cp312-*", "cp313-*", "cp313t-*"]
+skip = ["cp38-*", "cp39-*"]
 free-threaded-support = true
