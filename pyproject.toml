@@ -72,5 +72,4 @@ source = [
 ]
 
 [tool.cibuildwheel]
-skip = ["cp38-*", "cp39-*"]
 free-threaded-support = true
