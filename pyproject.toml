@@ -75,4 +75,4 @@ source = [
 ]
 
 [tool.cibuildwheel]
-free-threaded-support = true
+enable = ["cpython-freethreading"]
