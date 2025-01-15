@@ -38,6 +38,9 @@ docs = [
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+ext-modules = [{ name = "uwuifier._uwuifier", sources = ["src/uwuifier/_uwuifier.c"] }]
+
 [tool.ruff]
 preview = true
 unsafe-fixes = true
