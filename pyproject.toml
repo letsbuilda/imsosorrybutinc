@@ -3,7 +3,7 @@ name = "imsosorrybutinc"
 version = "0.7.0"
 description = "Sometimes it can be necessary to call upon the ancient arts... but in C!"
 authors = [
-    { name = "Bradley Reynolds", email = "bradley.reynolds@darbia.dev" },
+    { name = "Bradley Reynolds", email = "bradley.reynolds@tailstory.dev" },
 ]
 license = { text = "MIT" }
 readme = "README.md"
