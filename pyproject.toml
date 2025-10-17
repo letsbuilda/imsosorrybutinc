@@ -1,11 +1,11 @@
 [project]
 name = "imsosorrybutinc"
-version = "0.7.0"
+version = "0.7.1"
 description = "Sometimes it can be necessary to call upon the ancient arts... but in C!"
 authors = [
     { name = "Bradley Reynolds", email = "bradley.reynolds@tailstory.dev" },
 ]
-license = { text = "MIT" }
+license = "MIT"
 readme = "README.md"
 requires-python = ">=3.10,<3.15"
 dependencies = [
@@ -35,7 +35,7 @@ docs = [
 ]
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
