@@ -73,6 +73,3 @@ convention = "numpy"
 source = [
     "uwuifier",
 ]
-
-[tool.cibuildwheel]
-enable = ["cpython-freethreading"]
