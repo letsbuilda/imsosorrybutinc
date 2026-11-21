@@ -52,18 +52,18 @@ select = [
     "ALL",
 ]
 ignore = [
-    "CPY001", # (Missing copyright notice at top of file)
-    "S311", # (Standard pseudo-random generators are not suitable for cryptographic purposes) - Really?
+    "missing-copyright-notice", # (Missing copyright notice at top of file)
+    "suspicious-non-cryptographic-random-usage", # (Standard pseudo-random generators are not suitable for cryptographic purposes) - Really?
 ]
 
 [tool.ruff.lint.extend-per-file-ignores]
 "docs/*" = [
-    "INP001", # (File `tests/*.py` is part of an implicit namespace package. Add an `__init__.py`.) - Docs are not modules
-    "FA102", # (Missing `from __future__ import annotations`, but uses PEP 585 collection) - Docs are actually built on the latest stable release of Python
+    "implicit-namespace-package", # (File `tests/*.py` is part of an implicit namespace package. Add an `__init__.py`.) - Docs are not modules
+    "future-required-type-annotation", # (Missing `from __future__ import annotations`, but uses PEP 585 collection) - Docs are actually built on the latest stable release of Python
 ]
 "tests/*" = [
-    "INP001", # (File `tests/*.py` is part of an implicit namespace package. Add an `__init__.py`.) - Tests are not modules
-    "S101", # (Use of `assert` detected) - Yes, that's the point
+    "implicit-namespace-package", # (File `tests/*.py` is part of an implicit namespace package. Add an `__init__.py`.) - Tests are not modules
+    "assert", # (Use of `assert` detected) - Yes, that's the point
 ]
 
 [tool.ruff.lint.pydocstyle]
