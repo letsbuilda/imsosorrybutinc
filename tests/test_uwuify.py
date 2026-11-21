@@ -1,6 +1,7 @@
 """Test the arts of Uwuification."""
 
 import pytest
+
 from uwuifier import (
     char_replace,
     nyaify,

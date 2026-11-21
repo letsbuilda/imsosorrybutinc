@@ -10,7 +10,7 @@ project_metadata = metadata("imsosorrybutinc")
 project: str = project_metadata["Name"]
 release: str = project_metadata["Version"]
 REPO_LINK: str = project_metadata["Project-URL"].replace("repository, ", "")
-copyright: str = "Let's build a ..."  # noqa: A001
+copyright: str = "Let's build a ..."  # ruff: ignore[builtin-variable-shadowing]
 author: str = "Let's build a ... community"
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -54,15 +54,21 @@ releases_release_uri = f"{REPO_LINK}/releases/tag/v%s"
 
 
 def linkcode_resolve(domain: str, info: dict) -> str | None:
-    """linkcode_resolve."""
+    """Link each documented object to its source on GitHub.
+
+    Returns
+    -------
+    str | None
+        The URL of the object's source, or ``None`` if it has none.
+    """
     if domain != "py":
         return None
     if not info["module"]:
         return None
 
-    import importlib  # noqa: PLC0415
-    import inspect  # noqa: PLC0415
-    import types  # noqa: PLC0415
+    import importlib  # ruff: ignore[import-outside-top-level]
+    import inspect  # ruff: ignore[import-outside-top-level]
+    import types  # ruff: ignore[import-outside-top-level]
 
     mod = importlib.import_module(info["module"])
 
